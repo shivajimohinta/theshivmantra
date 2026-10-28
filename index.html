@@ -261,6 +261,7 @@ footer .wrap{padding-block:28px;display:flex;flex-wrap:wrap;justify-content:spac
         <div class="ctas">
           <a class="btn solid" href="#speaking">Invite me to speak</a>
           <a class="btn ghost" href="#consulting">Work with me</a>
+          <a class="btn ghost" href="#mantras">Read the 7 mantras ↓</a>
         </div>
       </div>
       <div class="hero-side">
@@ -626,7 +627,7 @@ document.getElementById('enquiry').addEventListener('submit', function(e){
   if(!document.getElementById('f-name').value.trim()){ document.getElementById('f-name').focus(); return; }
   var em=document.getElementById('f-email'); if(!em.value.trim()||!em.checkValidity()){ em.focus(); return; }
   fetch('/', {method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:new URLSearchParams(new FormData(f)).toString()})
-    .then(function(r){ if(!r.ok) throw 0; f.reset(); ok.hidden=false; err.hidden=true; })
+    .then(function(r){ if(!r.ok) throw 0; f.reset(); ok.hidden=false; err.hidden=true; if(typeof gtag==='function'){ gtag('event','generate_lead',{form_name:'enquiry'}); } })
     .catch(function(){ err.hidden=false; ok.hidden=true; });
 });
 </script>
